@@ -1,0 +1,89 @@
+<%- include("header.ejs") %>
+  <main>
+    <div id="header_section">
+      <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <% if(Category!=="Unknown" && Order!=="Unknown") {%>
+            <h1 class="fw-medium">Top 10 <%= Category %> Anime <br> This Week</h1>
+            <p class="lead">The ranking below has been calculated and ranked based on data compiled by Kitsu. 
+              For more details, please visit the original website:</p>  
+            <p>
+            <p id="click_here" class="lead text-body-secondary">
+              <a  class="text-warning" target="_blank" href="https://kitsu.app/explore/anime ">
+                Click here to visit Kitsu!
+              </a>
+            </p>
+            <% }else if (Search.trim() === ""){ %> <!-- Nếu giá trị Search chỉ có các khoảng trắng -->
+              <h1 class="fw-medium"> Oops! You forgot to fill in the search bar. </h1>
+            <% } else { %>
+              <h1 class="fw-medium">Here are the search results for "<%= locals.Search %>" </h1>
+              <p class="lead">The following information has been calculated and ranked based on data compiled by Kitsu. 
+                For more details, please visit the original website:</p>
+              <p>
+              <p id="click_here" class="lead text-body-secondary">
+                <a  class="text-warning" target="_blank" href="https://kitsu.app/explore/anime ">
+                  Click here to visit Kitsu!
+                </a>
+              </p>
+            <% } %>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="album py-5 bg-body-tertiary">
+      <% if(animeList.length ===0){ %>
+        <div class="container d-flex text-center justify-content-center">
+          <h1 style="color: var(--white);">
+            Sorry, we couldn't find what you're watching for. 
+            <br> Please try again!
+          </h1>
+        </div>
+      <%}  %>
+      <% if(locals.Search.trim() !== ""){ %>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <%   
+          const start = Order === "Descending" ? animeList.length - 1 : 0;
+          const end = Order === "Descending" ? -1 : animeList.length;
+          const step = Order === "Descending" ? -1 : 1; 
+          %>
+          <%for(let i=start ; i !== end;i+= step){%>
+          <div class="col">
+            <div class="card shadow-sm">
+              <a class="youtube-anchor" href=<%= `https://www.youtube.com/watch?v=${animeList[i].attributes.youtubeVideoId}`%> target="_blank">
+                <div class="image_container overflow-hidden">
+                  <% if(Category!=="Unknown" && Order!=="Unknown") {%>
+                  <div class="rank text-center m-2 bg-warning p-3 shadow">
+                    <p style="color: var(--black);" class="fs-6">Rank</p>
+                    <p style="color: var(--black);" class="fs-3">#<%= i + 1%></p>
+                  </div>  
+                  <% } %>
+                  <img src=<%= animeList[i].attributes.posterImage.tiny%> 
+                  data-src=<%= animeList[i].attributes.posterImage.original%>  
+                  alt="Anime Poster"
+                  class="anime_poster img-fluid bd-placeholder-img card-img-top blur-effect">
+                </div>
+                <div class="card-body d-flex flex-column justify-content-between"> 
+                  <h4>
+                    <%= animeList[i].attributes.titles.en ?animeList[i].attributes.titles.en : animeList[i].attributes.titles.en_jp  %>
+                  </h4>
+                  <div class="overflow-auto mb-3">
+                    <p class="card-text"><%= animeList[i].attributes.description %></p>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center card_footer">
+                    <p class="fs-6 badge rounded-pill text-bg-warning"><%= animeList[i].attributes.status %></p>
+                    <p class="fs-6 badge rounded-pill text-bg-success">Episode count: <%= animeList[i].attributes.episodeCount %></p>
+                  </div>
+                  <p style="background-color: var(--red);" class="fs-6 badge rounded-pill py-2">Average rating : <%= animeList[i].attributes.averageRating %></p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </main>
+<%- include("footer.ejs") %>

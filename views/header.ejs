@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--font import-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!--bootstrap import-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Anime List</title>
+</head>
+<body>
+  <div class="spinner_background d-flex justify-content-center align-items-center">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/waveform.js"></script>
+    <l-waveform
+      size="150"
+      stroke="10"
+      speed="1.5"
+      color="#ffc107" 
+    ></l-waveform>
+  </div>
+  <header class="fixed-top">
+    <nav id="main_navbar" class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <form action="/" method="POST">
+          <button id="navbar_logo" class="text-warning navbar-brand bg-transparent">Anime List</button>
+          <input type="hidden" name="order" value="Ascending">
+          <input type="hidden" name="category" value="Trending">
+        </form>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown" data-bs-theme="dark">
+              <a id="navbar_text" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Categories: <%= Category %>
+              </a>
+              <ul class="dropdown-menu"  style="column-count: 3; column-gap: 10px;">
+                <form action="/" method="POST">
+                  <%if (Order === "Unknown") {Order = "Ascending";}%>
+                  <input type="hidden" name="order" value="<%= Order%>">
+                  <input type="hidden" name="category" value="action">
+                  <button class="dropdown-item" type="submit">Action</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="adventure">
+                  <button class="dropdown-item" type="submit">Adventure</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="cooking">
+                  <button class="dropdown-item" type="submit">Cooking</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="comedy">
+                  <button class="dropdown-item" type="submit">Comedy</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="detective">
+                  <button class="dropdown-item" type="submit">Detective</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="drama">
+                  <button class="dropdown-item" type="submit">Drama</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="ecchi">
+                  <button class="dropdown-item" type="submit">Ecchi</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="harem">
+                  <button class="dropdown-item" type="submit">Harem</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="horror">
+                  <button class="dropdown-item" type="submit">Horror</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="isekai">
+                  <button class="dropdown-item" type="submit">Isekai</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="slice-of-life">
+                  <button class="dropdown-item" type="submit">Slice of life</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="music">
+                  <button class="dropdown-item" type="submit">Music</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="pirate">
+                  <button class="dropdown-item" type="submit">Pirate</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="psychological">
+                  <button class="dropdown-item" type="submit">Psychological</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="romance">
+                  <button class="dropdown-item" type="submit">Romance</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="scifi">
+                  <button class="dropdown-item" type="submit">Scifi</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="seinen">
+                  <button class="dropdown-item" type="submit">Seinen</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="shoujo">
+                  <button class="dropdown-item" type="submit">Shoujo</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="shonen">
+                  <button class="dropdown-item" type="submit">Shonen</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="sports">
+                  <button class="dropdown-item" type="submit">Sports</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="thriller">
+                  <button class="dropdown-item" type="submit">Thriller</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="trending">
+                  <button class="dropdown-item" type="submit">Trending</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="vampire">
+                  <button class="dropdown-item" type="submit">Vampire</button>
+                </form>
+                <form action="/" method="POST">
+                  <input type="hidden" name="order" value="<%= Order %>">
+                  <input type="hidden" name="category" value="zombie">
+                  <button class="dropdown-item" type="submit">Zombie</button>
+                </form>
+              </ul>
+            </li>
+            <li class="nav-item dropdown" data-bs-theme="dark">
+              <% if(locals.Search!=="none") {Order="Unknown"} %>
+              <a id="navbar_text" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Order : <%= Order%>
+              </a>
+              <ul class="dropdown-menu">
+                <form action="/" method="POST">
+                  <%if (Category === "Unknown") {Category = "Trending";}%>
+                  <input type="hidden" name="category" value="<%= Category %>">
+                  <input type="hidden" name="order" value="Ascending">
+                  <button class="dropdown-item" type="submit">Rating ascending</button>
+                </form>
+                <form action="/" method="POST">
+                  <%if (Category === "Unknown") {Category = "Trending";}%>
+                  <input type="hidden" name="category" value="<%= Category %>">
+                  <input type="hidden" name="order" value="Descending">
+                  <button class="dropdown-item" type="submit">Rating descending</button>
+                </form>
+              </ul>
+            </li>
+          </ul>
+          <form action="/search" method="GET" class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button id="search_button" class="btn" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>

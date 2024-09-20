@@ -1,0 +1,36 @@
+<footer>
+
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+  const loadingSpinner = document.querySelector(".spinner_background");
+  window.addEventListener("load",()=>{
+    setTimeout(()=>{
+      loadingSpinner.classList.add("hideSpinner");
+      setTimeout(() => {
+      loadingSpinner.style.display = "none";
+      }, 500);
+    },200)
+  });
+</script>
+<script>
+  const callback = (entries) => {
+    entries.forEach((entry)=> {
+      if(entry.isIntersecting){
+        const currentImage = entry.target;
+        const trueURL = currentImage.getAttribute("data-src");
+        currentImage.classList.remove("blur-effect");
+        currentImage.setAttribute("src",trueURL);
+      }
+    });
+  };
+  const observer = new IntersectionObserver(callback);
+
+  const posterImages = document.querySelectorAll(".anime_poster");
+  posterImages.forEach((image)=>{
+    observer.observe(image);
+  })
+</script>
+</body>
+</html>
